@@ -32,7 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/hall', hallRouter);
 
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
+// app.use(favicon(__dirname + '/public/images/icon.png'));
+app.use(favicon(path.join(__dirname,'public','images','icon.png')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
