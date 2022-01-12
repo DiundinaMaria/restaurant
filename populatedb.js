@@ -23,38 +23,10 @@ mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-var users = []
 var tables = []
 var tableinstances = []
 
 
-// 
-function userCreate(user_data) {
-    var cb = user_data.cb
-
-    var user_detail = {
-        user_login: user_data.login, 
-        isAdmin: user_data.isAdmin, 
-    }
-    if (user_data.first_name != false) user_detail.first_name = user_data.first_name
-    if (user_data.last_name != false) user_detail.last_name = user_data.last_name
-    if (user_data.birth_day != false) user_detail.birth_day = user_data.birth_day
-    if (user_data.phone_number != false) user_detail.phone_number = user_data.phone_number
-
-    var user = new User(user_detail);
-
-    user.save(function(err) {
-        if (err) {
-            cb(err, null)
-            return
-        }
-        console.log('Новый пользователь: ' + user);
-        users.push(user)
-        // cb(null, user)
-    });
-
-    return user
-}
 
 function tableCreate(name, chairs_count, description, cb) {
     table_detail = {
@@ -83,8 +55,8 @@ function tableinstanceCreate(table, user_data, reserv_start, reserv_end, reserv_
     tableinstance_detail = {
         table: table, 
         user: user, 
-        reserv_start: reserv_start, 
-        reserv_end: reserv_end, 
+        time_start: reserv_start, 
+        time_end: reserv_end, 
         updated: updated
     }
     if (reserv_description != false) tableinstance_detail.reserv_description = reserv_description
@@ -194,7 +166,6 @@ async.waterfall([
     createTableInstances
 ],
 
-// callback
 function(err, results) {
     if (err) {
         console.log('FINAL ERR: ' + err);

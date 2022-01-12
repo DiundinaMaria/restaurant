@@ -5,7 +5,6 @@ var moment = require('moment');
 
 var Table = require('../models/table');
 var Tableinstance = require('../models/tableinstance');
-const tableinstance = require('../models/tableinstance');
 
 
 

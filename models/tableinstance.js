@@ -25,14 +25,6 @@ TableInstanceSchema
 });
 
 
-// не проверено
-TableInstanceSchema
-.virtual('duration')
-.get(function () {
-    var res_duration = this.time_end - this.time_start
-  return res_duration;
-});
-
 TableInstanceSchema
 .virtual('date_formatted')
 .get(function () {
@@ -50,22 +42,6 @@ TableInstanceSchema
 .get(function () {
   return moment(this.time_end).format('HH:mm');
 });
-
-
-// TableInstanceSchema
-// .virtual('status')
-// .get(function () {
-//   var date_now = Date.now;
-//   var status = ''
-//   if (date_now > this.reserv_end) {
-//     status = 'Passed'
-//   } else if (date_now < this.reserv_start) {
-//     status = 'Future'
-//   } else {
-//     status = "OnGoing"
-//   }
-//   return status;
-// });
 
 
 module.exports = mongoose.model('TableInstance', TableInstanceSchema);

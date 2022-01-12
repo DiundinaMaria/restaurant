@@ -6,7 +6,6 @@ var router = express.Router();
 
 var table_controller = require('../controllers/tableController');
 var tableinstance_controller = require('../controllers/tableinstanceController');
-var user_controller = require('../controllers/userController')
 
 
 // Маршруты столов

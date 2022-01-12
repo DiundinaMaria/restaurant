@@ -223,6 +223,7 @@ exports.table_detail_get = function(req, res) {
         },
     }, function(err, results) {
         if (err) { return next(err); }
+
         if(results.table == null) {
             var err = new Error('Table not found');
             err.status = 404;
@@ -259,6 +260,11 @@ exports.table_detail_post = function (req, res, next) {
             err.status = 404;
             return next(err);
         }
+        results.tableinstance.sort(function(a, b) {
+            let dateA = a.time_start; 
+            let dateB = b.time_start; 
+            return (dateA < dateB) ? -1 : (dateA > dateB) ? 1 : 0;
+        });
         res.render('table_detail', {
             title: "Заголовок описания стола",
             table: results.table,
