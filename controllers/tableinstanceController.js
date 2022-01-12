@@ -14,6 +14,11 @@ exports.tableinstance_list = function(req, res, next) {
       .populate('table')
       .exec(function (err, instances) {
         if (err) { return next(err); }
+        instances.sort(function(a, b) {
+            let dateA = a.date; 
+            let dateB = b.date; 
+            return (dateA < dateB) ? -1 : (dateA > dateB) ? 1 : 0;
+        });
         res.render('tableinstances_list', { title: 'Бронирования', instances_list: instances });
       });
 
@@ -170,7 +175,7 @@ exports.tableinstance_create_post = [
         }
 ];
 
-// Удалние бронирования
+// Удаление бронирования
 exports.tableinstance_delete_get = function(req, res) {
     async.parallel({
         tableinstance: function(callback) {

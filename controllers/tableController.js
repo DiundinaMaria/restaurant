@@ -29,6 +29,11 @@ exports.table_list = function(req, res, next) {
       .exec(function (err, list_tables) {
         if (err) { return next(err); }
         //Successful, so render
+        list_tables.sort(function(a, b) {
+            let textA = a.tab_name.toUpperCase(); 
+            let textB = b.tab_name.toUpperCase(); 
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
         res.render('table_list', {
             title: 'Наши замечательные столики',
             table_list: list_tables
