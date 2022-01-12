@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='instance_id') Введите номер бронирования:
+      input#instance_id.form-control(type='text' placeholder='q23' name='instance_id' value=(undefined===instance_id ? '' : instance_id) )
+    div.form-group
+      label(for='instance_date') Введите дату бронирования:
+      input#instance_date.form-control(type='date' name='instance_date' value=(undefined===instance_date ? '' : instance_date) )
+    div.form-group
+      label(for='name') Клиент:
+      input#name.form-control(type='text' name='name' value=(undefined===name ? '' : name) )
+
+    button.btn.btn-primary(type='submit') Submit
+
+
+  if custom_err
+    p #{custom_err}
+
+  if instances
+    each instance in instances
+      li
+       a(href=instance.url) #{instance._id}
+      |  Столик: ( #{instance.table.tabname} )
+      |  Дата: ( #{instance.table.date} )
+      |  Начало бронирования: ( #{instance.reserv_start} )
+      |  Конец бронирования: ( #{instance.reserv_end} )
+      |  Описание: #{instance.reserv_description}
+
+
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
