@@ -21,7 +21,7 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
-// устанавливrf движков-шаблонов представления(view engine setup)
+// устанавливка движков-шаблонов представления(view engine setup)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/hall', hallRouter);
 
-app.use(favicon(path.join(__dirname,'public','images','icon.png')));
+app.use(favicon(path.join(__dirname,'public','images','icon1.png')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
