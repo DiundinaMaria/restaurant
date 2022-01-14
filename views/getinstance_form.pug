@@ -21,14 +21,28 @@ block content
     p #{custom_err}
 
   if instances
-    each instance in instances
-      li
-       a(href=instance.url) #{instance._id}
-      |  Столик: ( #{instance.table.tabname} )
-      |  Дата: ( #{instance.table.date} )
-      |  Начало бронирования: ( #{instance.reserv_start} )
-      |  Конец бронирования: ( #{instance.reserv_end} )
-      |  Описание: #{instance.reserv_description}
+    table
+      tr
+        th Id
+        th Стол
+        th Дата
+        th Начало бронирования
+        th Конец бронирования
+        th Дополнительная информация
+
+      each instance in instances
+        tr
+          td
+            a(href=instance.url) #{instance._id}
+          td #{instance.table.tab_name}
+          td #{instance.date_formatted}
+          td #{instance.time_start_formatted}
+          td #{instance.time_end_formatted}
+          td #{instance.reserv_description}
+
+      else
+        tr
+          td У нас пока нет бронирований.
 
 
   if errors
