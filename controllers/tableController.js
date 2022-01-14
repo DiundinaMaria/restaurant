@@ -212,14 +212,10 @@ exports.table_detail_get = function(req, res) {
     // Показать информацию столика,
     // Показать бронирования (на сегодня/завтра/хз)
     var today = new Date();
-    // today.setHours(5, 0, 0, 0) // устанавливаем нулевое время
 
     async.parallel({
         table: function(callback) {
             Table.findById(req.params.id).exec(callback)
-        },
-        tableinstance: function(callback) {
-            Tableinstance.find({ 'table': req.params.id, 'date': today}).exec(callback)
         },
     }, function(err, results) {
         if (err) { return next(err); }
@@ -232,7 +228,6 @@ exports.table_detail_get = function(req, res) {
         res.render('table_detail', {
             title: "Заголовок описания стола",
             table: results.table,
-            tableinstances: results.tableinstance,
             date: today
         });
     });

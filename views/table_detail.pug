@@ -21,15 +21,16 @@ block content
     div.form-group
       p #{date_form}
       dl
-        each instance in tableinstances
-          dt
-            a(href=instance.url) #{instance._id}
-          dd Клиент: #{instance.user}
-          dd Телефон: #{instance.phone_number}
-          dd Время бронирования: #{instance.time_start_formatted} - #{instance.time_end_formatted}
+        if tableinstances 
+          each instance in tableinstances
+            dt
+              a(href=instance.url) #{instance._id}
+            dd Клиент: #{instance.user}
+            dd Телефон: #{instance.phone_number}
+            dd Время бронирования: #{instance.time_start_formatted} - #{instance.time_end_formatted}
 
         else
-          p У этого столика нет бронирований.
+          p Выберите дату для отображения бронирований.
 
   hr
   p
