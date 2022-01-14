@@ -228,7 +228,7 @@ exports.tableinstance_update_get = function(req, res, next) {
             return next(err);
         }
 
-        var dd = moment(result.tableinstance.date).format('DD.MM.YYYY')
+        var dd = moment(result.tableinstance.date).format('yyyy-MM-DD')
         var ts = moment(result.tableinstance.time_start).format('HH:mm')
         var te = moment(result.tableinstance.time_end).format('HH:mm')
 

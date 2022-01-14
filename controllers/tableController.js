@@ -212,6 +212,7 @@ exports.table_detail_get = function(req, res) {
     // Показать информацию столика,
     // Показать бронирования (на сегодня/завтра/хз)
     var today = new Date();
+    var today_formatted = moment(today).format('yyyy-MM-DD')
 
     async.parallel({
         table: function(callback) {
@@ -228,7 +229,7 @@ exports.table_detail_get = function(req, res) {
         res.render('table_detail', {
             title: "Заголовок описания стола",
             table: results.table,
-            date: today
+            date: today_formatted
         });
     });
 };
@@ -236,7 +237,7 @@ exports.table_detail_get = function(req, res) {
 exports.table_detail_post = function (req, res, next) {
     // для отображения стола со списком бронирований на указанную дату
     var today = new Date(req.body.date);
-    // today.setHours(5, 0, 0, 0) // устанавливаем нулевое время
+    var today_calendar = moment(today).format('yyyy-MM-DD')
     var today_formatted = moment(today).format('DD.MM.YYYY')
 
 
@@ -263,7 +264,7 @@ exports.table_detail_post = function (req, res, next) {
             title: "Заголовок описания стола",
             table: results.table,
             tableinstances: results.tableinstance,
-            date: today_formatted,
+            date: today_calendar,
             date_form: today_formatted});
     });
 }
