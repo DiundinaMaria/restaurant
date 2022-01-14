@@ -23,6 +23,10 @@ table {
   border: 0;
 }
 
+td {
+  word-wrap: break-word;
+  max-width: 150px;
+}
 
 .navbar_n {
   position: relative;

@@ -17,33 +17,35 @@ block content
     button.btn.btn-primary(type='submit') Поиск
 
 
+  if !instances
+    p У нас пока нет бронирований.
+  else
+    if instances.length==0
+      p У нас пока нет бронирований.
+
   if custom_err
     p #{custom_err}
 
-  if instances
-    table
-      tr
-        th Id
-        th Стол
-        th Дата
-        th Начало бронирования
-        th Конец бронирования
-        th Дополнительная информация
-
-      each instance in instances
+  if instances 
+    if instances.length
+      table
         tr
-          td
-            a(href=instance.url) #{instance._id}
-          td #{instance.table.tab_name}
-          td #{instance.date_formatted}
-          td #{instance.time_start_formatted}
-          td #{instance.time_end_formatted}
-          td #{instance.reserv_description}
+          th Id
+          th Стол
+          th Дата
+          th Начало бронирования
+          th Конец бронирования
+          th Дополнительная информация
 
-      else
-        tr
-          td У нас пока нет бронирований.
-
+        each instance in instances
+          tr
+            td
+              a(href=instance.url) #{instance._id}
+            td #{instance.table.tab_name}
+            td #{instance.date_formatted}
+            td #{instance.time_start_formatted}
+            td #{instance.time_end_formatted}
+            td #{instance.reserv_description}
 
   if errors
     ul

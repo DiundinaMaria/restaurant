@@ -52,7 +52,8 @@ exports.tableinstance_create_post = [
 
         body('date', 'Invalid date').optional({ checkFalsy: true}).isISO8601().toDate(),
         body('time_start', 'Invalid time start').trim().isLength({min: 5, max: 5}),
-        body('time_end', 'Invalid time end').trim().isLength({min: 5, max: 5})
+        body('time_end', 'Invalid time end').trim().isLength({min: 5, max: 5}),
+        body('reserv_description', 'Поле описания ограничено 200 символами').trim().isLength({max: 200})
             .custom((val, {req}) => {
                 var time_start = new Date(req.body.date)
                 time_start.setHours(req.body.time_start.slice(0,2))
