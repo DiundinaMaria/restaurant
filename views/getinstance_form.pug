@@ -6,7 +6,7 @@ block content
   form(method='POST' action='')
     div.form-group
       label(for='instance_id') Введите номер бронирования:
-      input#instance_id.form-control(type='text' placeholder='q23' name='instance_id' value=(undefined===instance_id ? '' : instance_id) )
+      input#instance_id.form-control(type='text' name='instance_id' value=(undefined===instance_id ? '' : instance_id) )
     div.form-group
       label(for='instance_date') Введите дату бронирования:
       input#instance_date.form-control(type='date' name='instance_date' value=(undefined===instance_date ? '' : instance_date) )
@@ -14,7 +14,7 @@ block content
       label(for='name') Клиент:
       input#name.form-control(type='text' name='name' value=(undefined===name ? '' : name) )
 
-    button.btn.btn-primary(type='submit') Submit
+    button.btn.btn-primary(type='submit') Поиск
 
 
   if custom_err
