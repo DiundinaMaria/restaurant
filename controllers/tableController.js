@@ -213,7 +213,6 @@ exports.table_detail_get = function(req, res) {
     // Показать бронирования (на сегодня/завтра/хз)
     var today = new Date();
     today.setHours(5, 0, 0, 0) // устанавливаем нулевое время
-    var today_formatted = moment(today_formatted).format('DD.MM.YYYY')
 
     async.parallel({
         table: function(callback) {
@@ -243,7 +242,7 @@ exports.table_detail_post = function (req, res, next) {
     // для отображения стола со списком бронирований на указанную дату
     var today = new Date(req.body.date);
     today.setHours(5, 0, 0, 0) // устанавливаем нулевое время
-    var today_formatted = moment(today_formatted).format('DD.MM.YYYY')
+    var today_formatted = moment(today).format('DD.MM.YYYY')
 
 
     async.parallel({
