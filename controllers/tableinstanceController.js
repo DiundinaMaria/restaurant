@@ -32,6 +32,11 @@ exports.tableinstance_create_get = function(req, res, next) {
         },
     }, function(err, results) {
         if (err) { return next(err); }
+        results.tables.sort(function(a, b) {
+            let textA = a.tab_name.toUpperCase(); 
+            let textB = b.tab_name.toUpperCase(); 
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
         res.render('tableinstance_form', {
             title: 'Забронировать стол',
             tables: results.tables
